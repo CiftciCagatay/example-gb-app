@@ -1,13 +1,13 @@
 apiVersion: v1
 kind: Service
 metadata:
-  name: redis-service
+  name: redis-master-service
   labels:
-    name: redis-service
+    name: redis-master-service
 spec:
   ports:
   - port: 6379
     targetPort: 6379
   selector:
-    name: redis
-    tier: frontend
+    name: redis-master
+    tier: backend

@@ -1,31 +1,31 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: guestbook-app-deployment
+  name: redis-slave-deployment
   labels:
-    name: guestbook-app-deployment
+    name: redis-slave-deployment
 spec:
   replicas: 3
   selector:
     matchLabels:
-      name: guestbook-app
-      tier: frontend
+      name: redis-slave
+      tier: backend
   template:
     metadata:
-      name: guestbook-app
+      name: redis-slave
       labels:
-        name: guestbook-app
-        tier: frontend
+        name: redis
+        tier: backend
     spec:
       containers:
-      - name: guestbook-app
-        image: gcr.io/google-samples/gb-frontend:v4
-        ports:
-        - containerPort: 80
+      - name: redis-slave
+        image: redis
         resources:
           requests:
             cpu: 100m
             memory: 100Mi
+        ports:
+        - containerPort: 6379
         env:
         - name: GET_HOSTS_FROM
           value: dns
