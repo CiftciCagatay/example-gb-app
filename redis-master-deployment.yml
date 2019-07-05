@@ -14,7 +14,7 @@ spec:
     metadata:
       name: redis-master
       labels:
-        name: redis
+        name: redis-master
         tier: backend
     spec:
       containers:
